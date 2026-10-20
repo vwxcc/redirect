@@ -1,0 +1,12 @@
+{
+  "name": "ai-ch-redirect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Beige landing page announcing the new AI-CH website",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
