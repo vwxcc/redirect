@@ -2,7 +2,7 @@
   "name": "ai-ch-redirect",
   "version": "1.0.0",
   "private": true,
-  "description": "Beige landing page announcing the new AI-CH website",
+  "description": "Immediate HTTP redirect to the current AI-CH website",
   "scripts": {
     "start": "node server.js"
   },
