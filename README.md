@@ -1,35 +1,32 @@
 # AI-CH Redirect
 
-A minimal, responsive beige landing page explaining that AI-CH has moved and providing one clear button to open the current site.
+Сервис **сразу перенаправляет** посетителя на актуальный сайт AI-CH: сервер отвечает HTTP **302** и не показывает промежуточную страницу или кнопку. Адрес назначения задаётся переменной окружения `AI_CH_URL`.
 
-## Environment
-
-Set `AI_CH_URL` to the current AI-CH URL in your hosting provider's environment settings:
+## Адрес назначения
 
 ```env
 AI_CH_URL=https://ai-ch.onrender.com
 ```
 
-The app validates that the value is an `http://` or `https://` URL. If the variable is omitted, it uses the current default above. Do not put secrets in this variable.
+Если переменная не задана, используется указанный выше адрес по умолчанию. Допустимы только URL с протоколом `http://` или `https://`. Не помещай в эту переменную секреты.
 
-## Deploy on Render
+## Развёртывание на Render
 
-1. Create a **Web Service** from this repository.
-2. Select the Node runtime.
-3. Set the build command to leave empty (no dependencies are required).
-4. Set the start command to `npm start`.
-5. Add `AI_CH_URL` under **Environment**.
-6. Deploy. Render provides `PORT` automatically.
+1. Создай **Web Service** из этого репозитория.
+2. Выбери среду Node.
+3. Оставь команду сборки пустой — зависимости не нужны.
+4. Укажи команду запуска `npm start`.
+5. Добавь `AI_CH_URL` в раздел **Environment**.
+6. Разверни сервис. Render автоматически задаст `PORT`.
 
-Health check path: `/health`.
+Путь проверки работоспособности: `/health`. Он возвращает `200 OK`, не перенаправляя запрос. Все остальные пути перенаправляются на URL из `AI_CH_URL`.
 
-## Local run
+## Локальный запуск
 
-Requires Node.js 18 or newer:
+Требуется Node.js 18 или новее:
 
 ```sh
-cp .env.example .env
 npm start
 ```
 
-The server uses `PORT` if set, otherwise port `3000`. Note: Node does not automatically load `.env`; for local testing either export the variables in your shell or run with a compatible dotenv loader. No external packages are needed.
+Сервер использует переменную `PORT`, если она задана, иначе порт `3000`. Node.js сам по себе не загружает файл `.env`; для локального запуска экспортируй переменные окружения в оболочке или используй совместимый загрузчик dotenv.
